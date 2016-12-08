@@ -1,0 +1,7 @@
+name: "2015 High School Graduation Rates by U.S. State"
+output_dir: "."
+navbar:
+  title: "2015 High School Graduation Rates by U.S. State, Select Student Group"
+  left:
+    - text: "Home"
+      href: map_high_school_graduation_rates_50_united_states.html
