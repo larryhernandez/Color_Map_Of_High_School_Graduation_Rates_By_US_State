@@ -3,7 +3,6 @@ title: "Maps of 2015 Public High School Graduation Rates by State, Select Studen
 author: "Larry Hernandez"
 date: "December 3, 2016"
 output:
-  pdf_document: default
   html_document: default
 ---
 
