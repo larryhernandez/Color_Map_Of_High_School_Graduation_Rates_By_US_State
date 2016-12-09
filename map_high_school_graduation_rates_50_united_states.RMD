@@ -14,9 +14,9 @@ High school graduation rates have been collected and published by the US Departm
 
 <br>
 
-Since it is not uncommon for some students to change schools throughout their high school careers, the 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The definition of the 4-year ACGR is available on the Common Core of Data website and is reproduced below for completeness:
+  The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The definition of the 4-year ACGR is available on the Common Core of Data website and is reproduced below:
 
-  + "NOTE: The 4-year ACGR is the number of students who graduate in 4 years with a regular high school diploma divided by the number of students who form the adjusted cohort for the graduating class. From the beginning of 9th grade (or the earliest high school grade), students who are entering that grade for the first time form a cohort that is "adjusted" by adding any students who subsequently transfer into the cohort and subtracting any students who subsequently transfer out, emigrate to another country, or die. To protect the confidentiality of individual student data, ACGRs are shown at varying levels of precision depending on the size of the cohort population for each category cell. There are some differences in how states implemented the requirements for the ACGR, leading to the potential for differences across states in how the rates are calculated. This is particularly applicable to the population of children with disabilities."
+  + "The 4-year ACGR is the number of students who graduate in 4 years with a regular high school diploma divided by the number of students who form the adjusted cohort for the graduating class. From the beginning of 9th grade (or the earliest high school grade), students who are entering that grade for the first time form a cohort that is "adjusted" by adding any students who subsequently transfer into the cohort and subtracting any students who subsequently transfer out, emigrate to another country, or die. To protect the confidentiality of individual student data, ACGRs are shown at varying levels of precision depending on the size of the cohort population for each category cell. There are some differences in how states implemented the requirements for the ACGR, leading to the potential for differences across states in how the rates are calculated. This is particularly applicable to the population of children with disabilities."
 
 <br>
 
@@ -61,6 +61,8 @@ library(magrittr)
 library(htmltools)
 library(RColorBrewer)
 library(tigris)
+library(ggplot2)      # needed for poltly
+library(plotly)
 
 # User-defined functions & global paths
 dir_project = "C:/Users/Larry/Documents/DataScience/Education_Projects/ACGR/map_acgr_by_state/"  # main folder for project
@@ -413,16 +415,76 @@ The state which fared worst at graduating economically disadvantaged students wa
 
 <br>
 
+
+```{r, echo=FALSE, warning=FALSE}
+# Bar Chart of ACGR for all racial group
+counts            = acgr_data[1,4:8]
+bar_data          = as.numeric(counts)
+barchart_names    = names(counts)
+barchart_names[1] = "Am.Indian"
+barchart_names[2] = "Asian"
+
+# acgr_bar <-  plot_ly( x = barchart_names,
+#                       y = bar_data,
+#                       name = "ACGR vs Racial Group",
+#                       type = "bar"
+#                     ) %>%
+#               layout( title = "ACGR by Racial Group ",
+#                       xaxis = list(title = ""),
+#                       yaxis = list(title = "ACGR"))
+
+Nat.Avg.ACGR = as.numeric(acgr_data[1,"Total"])
+
+
+annot <- list(
+                x = 2,
+                y = Nat.Avg.ACGR*1.025,
+                text = "83.2",
+                xref = "x",
+                yref = "y",
+                showarrow = FALSE,
+                textposition = 2)
+
+acgr_bar <-   plot_ly() %>%
+              add_trace(  x = barchart_names,
+                          y = bar_data,
+                          name = "ACGR by Racial Group",
+                          type = "bar",
+                          showlegend = FALSE,
+                          hoverinfo = "text",
+                          text = bar_data
+                        ) %>%
+              add_trace(  x = barchart_names,
+                          y = rep(Nat.Avg.ACGR, 5),
+                          name = "National Avg",
+                          type = "scatter",
+                          mode = "lines",
+                          hoverinfo = "none"
+                          #text = Nat.Avg.ACGR
+                        ) %>%
+              layout( title = "ACGR by Racial Group ",
+                      xaxis = list(title = "", type="category"),
+                      yaxis = list(title = "ACGR"),
+                      annotations = annot)
+
+# Display Bar Chart
+acgr_bar
+
+```
+**Figure 3: Graduation rates of the five racial groups at the national level.**
+
+<br>
+
 ### Map #3: American Indians and Alaska Natives
 ```{r, echo=FALSE, warning=FALSE}
 # Visualize the map
 map_american_indian
 ```
-**Figure 3: The graduation rate for American Indian / Alaska Native students was 71.6% nationally, <br> with the highest rate in Alabama (90%) and the lowest rate occurring in Wyoming (45%). <br> Graduation rates are below 70% for American Indian students in 14 of 24 states <br> (ie 58% of states) West of the Mississippi River.**
+**Figure 4: The graduation rate for American Indian / Alaska Native students was 71.6% nationally, <br> with the highest rate in Alabama (90%) and the lowest rate occurring in Wyoming (45%). <br> Graduation rates are below 70% for American Indian students in 14 of 24 states <br> (ie 58% of states) West of the Mississippi River.**
 
 <br>
 
-It is well-known among educators that graduation rates for Asian (90.2%) and White (87.6%) students are higher than Hispanic (77.8%), Black (74.6%), and American Indian students (71.6%). It may not be so well-known that on a national level American Indian students graduate at lower rates than any of the other four racial groups. Figure 3 reveals that only 45-70% of American Indian students graduated high school in 15 of 24 states situated on or west of the Mississippi River. What is happening in the Western United States that American Indian students are graduating in low numbers? The states where American Indian student graduation rates were the highest include Alabama (90%), New Jersey (89%), and Connecticut (87%). The lowest rates were in Wyoming(45%), South Dakota (49%), and Minnesota (52%).
+It is known among educators that graduation rates for Asian (90.2%) and White (87.6%) students are higher than those of Hispanic (77.8%), Black (74.6%), and American Indian students (71.6%). It may not be so well-known that on a national level American Indian students graduate at lower rates than any of the other four racial groups (Figure 3). Figure 4 reveals that only 45-70% of American Indian students graduated high school in 15 of 24 states situated on or west of the Mississippi River. What is happening in the Western United States that American Indian students are graduating in low numbers? The states where American Indian student graduation rates were the highest include Alabama (90%), New Jersey (89%), and Connecticut (87%). The lowest rates were in Wyoming(45%), South Dakota (49%), and Minnesota (52%).
 
 <br>
 
@@ -435,11 +497,11 @@ It is well-known among educators that graduation rates for Asian (90.2%) and Whi
 # Visualize the map
 map_black
 ```
-**Figure 4: The graduation rate for Black students was 74.6% nationally, with the lowest rate <br> occurring in Nevada (55.5%) and the highest in Alabama (87%). The ACGR of Black students was <br> below 70% in 13 states.**
+**Figure 5: The graduation rate for Black students was 74.6% nationally, with the lowest rate <br> occurring in Nevada (55.5%) and the highest in Alabama (87%). The ACGR of Black students was <br> below 70% in 13 states.**
 
 <br>
 
-While the graduation rate of American Indian students is lowest among all racial groups, the ACGRs of Black students (74.6%) is not much higher. And in fact, the ACGR of black students was lowest among all racial groups in 23 states. The fact that this is nearly half the total number of states in the country is alarming. Black students graduate at lowest rates in Nevada (55.5%), Ohio (59.7%), and New Mexico (61%). Graduation rates of Black students are highest in Alabama (87%), Texas (85.2%), and Delaware (83.2%). What is being done in Alabama and Texas that could be utilized in other states to increase the high school graduation rate of Black students?
+While the graduation rate of American Indian students is lowest among all racial groups, the ACGRs of Black students (74.6%) is not much higher (Figure 4). And in fact, the ACGR of black students was lowest among all racial groups in 23 states. The fact that this is nearly half the total number of states in the country is alarming. Black students graduate at lowest rates in Nevada (55.5%), Ohio (59.7%), and New Mexico (61%). Graduation rates of Black students are highest in Alabama (87%), Texas (85.2%), and Delaware (83.2%). What is being done in Alabama and Texas that could be utilized in other states to increase the high school graduation rate of Black students?
 
 <br>
 
@@ -453,7 +515,7 @@ For brevity, the graduation rates of students with disabilities and students wit
 
 <br>
 
-What can be done to raise the high school graduation rate for American Indian / Alaska Native, Black, Hispanic, LEP, and disabled students? Perhaps the reasons for success in Alabama and Texas could be explored (if not already done so) and implemented in other states to increase graduation rates of all students there.
+What can be done to raise the high school graduation rate for American Indian / Alaska Native, Black, Hispanic, LEP, and disabled students? Perhaps the systems in place in states with high graduation rates for many student groups, like Alabama and Texas, could be implemented in states where graduation rates are low.
 
 <br>
 
