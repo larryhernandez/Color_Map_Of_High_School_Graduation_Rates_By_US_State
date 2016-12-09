@@ -273,17 +273,17 @@ popup_total = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
                               "<strong>Rate: </strong>",  sh_states@data$Total, "%", "<br>",
                               "<strong>Rank: </strong>",  sh_states@data$Rank_Total)
 
-popup_econ_dis = paste0("<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
-                                "<strong>Rate: </strong>",  sh_states@data$Economically.disadvantaged, "%", "<br>",
-                                "<strong>Rank: </strong>",  sh_states@data$Rank_EconDisadv)
-
-popup_american_indian = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
-                                "<strong>Rate: </strong>",  sh_states@data$American.Indian...Alaska.Native, "%", "<br>",
-                                "<strong>Rank: </strong>",  sh_states@data$Rank_American_Indian)
-
-popup_black = paste0("<strong>Name: </strong>",  sh_states@data[,"NAME"], "<br>",
-                     "<strong>Rate: </strong>",  sh_states@data[,black_col], "%", "<br>",
-                     "<strong>Rank: </strong>",  sh_states@data[,"Rank_Black"])
+# popup_econ_dis = paste0("<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
+#                                 "<strong>Rate: </strong>",  sh_states@data$Economically.disadvantaged, "%", "<br>",
+#                                 "<strong>Rank: </strong>",  sh_states@data$Rank_EconDisadv)
+# 
+# popup_american_indian = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
+#                                 "<strong>Rate: </strong>",  sh_states@data$American.Indian...Alaska.Native, "%", "<br>",
+#                                 "<strong>Rank: </strong>",  sh_states@data$Rank_American_Indian)
+# 
+# popup_black = paste0("<strong>Name: </strong>",  sh_states@data[,"NAME"], "<br>",
+#                      "<strong>Rate: </strong>",  sh_states@data[,black_col], "%", "<br>",
+#                      "<strong>Rank: </strong>",  sh_states@data[,"Rank_Black"])
 
 mapStates = map("state", fill = FALSE, plot = FALSE)
 
@@ -321,68 +321,68 @@ map_total<- leaflet() %>%
                         na.label = "NA")
 
 # Create leaflet map for the economically disadvantaged
-map_econ_dis <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_econ),
-                                  popup = popup_econ_dis,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
+# map_econ_dis <-leaflet() %>%
+#                       setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
+#                       addTiles() %>%
+#                       addPolygons(data = sh_states,
+#                                   stroke = TRUE,
+#                                   fillOpacity = fill_opacity_val,
+#                                   smoothFactor = smooth_value,
+#                                   weight = weight_value,
+#                                   color = color_map(acgr_econ),
+#                                   popup = popup_econ_dis,
+#                                   group = "Total") %>%
+#                       addLegend(  position = position_of_legend, 
+#                                   pal = color_map,
+#                                   values = acgr_total,
+#                                   title = "Avg ACGR", 
+#                                   opacity = 1, 
+#                                   na.label = "NA")
 
 
 # Create leaflet map for american_indian
-map_american_indian <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_am_indian),
-                                  popup = popup_american_indian,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
-
-# Create leaflet map for american_indian
-map_black           <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_black),
-                                  popup = popup_black,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
+# map_american_indian <-leaflet() %>%
+#                       setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
+#                       addTiles() %>%
+#                       addPolygons(data = sh_states,
+#                                   stroke = TRUE,
+#                                   fillOpacity = fill_opacity_val,
+#                                   smoothFactor = smooth_value,
+#                                   weight = weight_value,
+#                                   color = color_map(acgr_am_indian),
+#                                   popup = popup_american_indian,
+#                                   group = "Total") %>%
+#                       addLegend(  position = position_of_legend, 
+#                                   pal = color_map,
+#                                   values = acgr_total,
+#                                   title = "Avg ACGR", 
+#                                   opacity = 1, 
+#                                   na.label = "NA")
+# 
+# # Create leaflet map for american_indian
+# map_black           <-leaflet() %>%
+#                       setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
+#                       addTiles() %>%
+#                       addPolygons(data = sh_states,
+#                                   stroke = TRUE,
+#                                   fillOpacity = fill_opacity_val,
+#                                   smoothFactor = smooth_value,
+#                                   weight = weight_value,
+#                                   color = color_map(acgr_black),
+#                                   popup = popup_black,
+#                                   group = "Total") %>%
+#                       addLegend(  position = position_of_legend, 
+#                                   pal = color_map,
+#                                   values = acgr_total,
+#                                   title = "Avg ACGR", 
+#                                   opacity = 1, 
+#                                   na.label = "NA")
 
 ```
 
 ## Results
 
-  Interactive color maps have been produced and are presented below as Figures 1-4. While at first glance these figures appear to show only the 48 contiguous states, the interactive nature of these maps allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map, with a rank of 1 indicating the highest graduation rate and 51 indicating the lowest graduation rate in the US, where the District of Columbia has been included. In cases where data is unavailable for all fifty states or the District of Columbia, the lowest achievable rank is smaller than fifty one.
+  Interactive color maps have been produced and are presented below as Figures 1-4. While at first glance these figures appear to show only the 48 contiguous states, the interactive nature of these maps allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map, with a rank of 1 indicating the highest graduation rate and 51 indicating the lowest graduation rate in the US, where the District of Columbia has been included. In cases where data is unavailable  for all fifty states or the District of Columbia, the lowest achievable rank is smaller than fifty one.
 
 <br>
 
@@ -402,7 +402,7 @@ map_total
 ### Map #2: Economically Disadvantaged Students
 ```{r, echo=FALSE, warning=FALSE}
 # Visualize the map
-map_econ_dis
+# map_econ_dis
 ```
 **Figure 2: The graduation rate for economically disadvantaged students in the U.S. was 76.1% in <br> 2015. Texas boasts the highest graduation rate for this student group at 85.6% which is just 3.4 <br> points below the statewide graduation rate (for all students).**
 
@@ -418,7 +418,7 @@ The state which fared worst at graduating economically disadvantaged students wa
 ### Map #3: American Indians and Alaska Natives
 ```{r, echo=FALSE, warning=FALSE}
 # Visualize the map
-map_american_indian
+# map_american_indian
 ```
 **Figure 3: The graduation rate for American Indian / Alaska Native students was 71.6% nationally, <br> with the highest rate in Alabama (90%) and the lowest rate occurring in Wyoming (45%). <br> Graduation rates are below 70% for American Indian students in 14 of 24 states <br> (ie 58% of states) West of the Mississippi River.**
 
@@ -435,7 +435,7 @@ It is well-known among educators that graduation rates for Asian (90.2%) and Whi
 ### Map #4: Black Students
 ```{r, echo=FALSE, warning=FALSE}
 # Visualize the map
-map_black
+# map_black
 ```
 **Figure 4: The graduation rate for Black students was 74.6% nationally, with the lowest rate <br> occurring in Nevada (55.5%) and the highest in Alabama (87%). The ACGR of Black students was <br> below 70% in 13 states.**
 
