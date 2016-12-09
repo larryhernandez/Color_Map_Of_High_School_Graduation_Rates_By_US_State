@@ -2,7 +2,8 @@
 title: "Maps of 2015 Public High School Graduation Rates by State, Select Student Groups"
 author: "Larry Hernandez"
 date: "December 3, 2016"
-output: html_document
+output:
+  html_document: default
 ---
 
 <br>
@@ -93,9 +94,9 @@ source(paste0(dir_code2,"merge_data_with_shape.R"))
 # Download the acgr data
 fileURL_acgr2014_2015 = "https://nces.ed.gov/ccd/tables/xls/ACGR_RE_Characteristics_2014-15.xlsx"
 filename = "ACGR_RE_Characteristics_2014-15.xlsx"
-download.file(fileURL_acgr2014_2015, 
-              destfile = paste0(dir_data,filename), 
-              mode = "wb")
+# download.file(fileURL_acgr2014_2015, 
+#              destfile = paste0(dir_data,filename), 
+#              mode = "wb")
 
 
 # Read the data into a dataframe
@@ -181,7 +182,7 @@ num_times_white_is_min        = num_instances_category_is_min(acgr_data[states_o
 
 # Save finalized data set to disk
 output_csv = paste0(dir_data,"cleaned_acgr_data_us_states.csv")
-write.csv(acgr_data,file=output_csv)
+# write.csv(acgr_data,file=output_csv)
 
 #####################################################################################
 #####################################################################################
@@ -197,24 +198,24 @@ fn_zipped_tiger_shape = "tl_2015_us_state.zip"
 zip_file_full_name =  paste0(dir_to_put_shapes,fn_zipped_tiger_shape)
 fn_tiger_shape = paste0(substr(fn_zipped_tiger_shape, 1, nchar(fn_zipped_tiger_shape)-4),".shp")
 
-download.file(fileURL,
-               destfile = zip_file_full_name, 
-               mode = "wb")
+# download.file(fileURL,
+#               destfile = zip_file_full_name, 
+#               mode = "wb")
 
 dir_to_unzip_shapes = substr(dir_to_put_shapes, 1, nchar(dir_to_put_shapes)-1)
 
 # unzip file
-unzip(zip_file_full_name, 
-      files = NULL, 
-      list = FALSE, 
-      overwrite = TRUE,
-      junkpaths = FALSE, 
-      exdir = dir_to_unzip_shapes, 
-      unzip = "internal",
-      setTimes = FALSE)
+# unzip(zip_file_full_name, 
+#       files = NULL, 
+#       list = FALSE, 
+#       overwrite = TRUE,
+#       junkpaths = FALSE, 
+#       exdir = dir_to_unzip_shapes, 
+#       unzip = "internal",
+#       setTimes = FALSE)
 
 # delete .zip file
-file.remove(zip_file_full_name)
+# file.remove(zip_file_full_name)
 
 # Update name of shapefile for subsequent use with readOGR()
 # Note1: the string containing name of the directory containing shape file 
@@ -247,13 +248,11 @@ sh_states <-SpatialPolygonsDataFrame(sh_states, data=sh_states_data)
 
 # ----- Write data to GeoJSON
 # downloaddir = paste0(dir_to_put_shapes,"Leaflet/")
-# filename_leafdata <-paste0(downloaddir, filename_shape, ".geojson")
+# filename_leafdata <-paste0(downloaddir, fn_tiger_shape, ".geojson")
 # if(!dir.exists(downloaddir)){dir.create(downloaddir)}
 # writeOGR(sh_states, filename_leafdata, layer="", driver="GeoJSON")
 
 # ----- Read GeoJSON data for leaflet
-# leaf_data = readOGR(dsn = file.path(downloaddir, leafdat), layer = "OGRGeoJSON")
-# leaf_data = readOGR(dsn = downloaddir)
 # leaf_data = readOGR(dsn = filename_leafdata)
 
 # Combine all ACGR values to create color-map in Leaflet
@@ -474,4 +473,8 @@ The following is a list of the data sources used to create the visualizations pr
 
 
 ## Appendix B: Code Used to Complete This Project
-The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on GitHut and is freely available for others to use: https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State
+The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHut](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.
+
+<br>
+
+Note: Special thanks to Zev Ross for having created a [tutorial about generating maps with leaflet.](http://zevross.com/blog/2014/04/11/using-r-to-quickly-create-an-interactive-online-map-using-the-leafletr-package/) I relied on the content from that tutorial for generating the maps presented here.
