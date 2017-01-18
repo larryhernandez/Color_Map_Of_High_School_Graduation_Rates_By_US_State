@@ -1,7 +1,7 @@
 ---
-title: "Maps of 2015 Public High School Graduation Rates by State, Select Student Groups"
+title: "Color Maps of 2015 Public High School Graduation Rates by State, Select Student Groups"
 author: "Larry Hernandez"
-date: "December 3, 2016"
+date: "January 18, 2017"
 output:
   html_document: default
 ---
@@ -21,7 +21,7 @@ High school graduation rates have been collected and published by the US Departm
 <br>
 
 ## Methods
-  Data for this project were downloaded from the Common Core of Data (CCD) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into several color maps of the United States with the utilization of a shape file and the leaflet package. These color maps are presented in the Results section of this document.
+  Data for this project were downloaded from the [Common Core of Data (CCD)](https://nces.ed.gov/ccd/tables/ACGR_RE_and_characteristics_2014-15.asp) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into several color maps of the United States with the utilization of a shape file and the leaflet package. These color maps are presented in the Results section of this document.
 
 
 ### Data Sources
@@ -404,7 +404,7 @@ map_total
 # Visualize the map
 map_econ_dis
 ```
-**Figure 2: The graduation rate for economically disadvantaged students in the U.S. was 76.1% in <br> 2015. Texas boasts the highest graduation rate for this student group at 85.6% which is just 3.4 <br> points below the statewide graduation rate (for all students).**
+**Figure 2: The graduation rate for economically disadvantaged students in the U.S. was 76.1% in <br> 2015. Texas boasts the highest graduation rate for this student group at 85.6% which is 3.4 <br> points below the statewide graduation rate (for all students) and 2.4 points above the US National rate.**
 
 <br>
 
@@ -458,9 +458,10 @@ acgr_bar <-   plot_ly() %>%
                           y = rep(Nat.Avg.ACGR, 5),
                           name = "National Avg",
                           type = "scatter",
+                          showlegend = FALSE,
                           mode = "lines",
                           hoverinfo = "none"
-                          #text = Nat.Avg.ACGR
+                          #text = "National Average"
                         ) %>%
               layout( title = "ACGR by Racial Group ",
                       xaxis = list(title = "", type="category"),
@@ -471,7 +472,7 @@ acgr_bar <-   plot_ly() %>%
 acgr_bar
 
 ```
-**Figure 3: Graduation rates of the five racial groups at the national level.**
+**Figure 3: National graduation rates of the five major racial groups in the US. For reference, <br> the national graduate rate for all students (83.6%) is presented here as an orange, horizontal line.**
 
 <br>
 
@@ -507,11 +508,19 @@ While the graduation rate of American Indian students is lowest among all racial
 
 ## Summary
 
-It is clear from Figure 1 that high school graduation rates in most states exceed 75%, with 35 of 50 states surpassing 80%. Economically Disadvantaged students are graduating at rates below 70% in 11 states; this group is also graduating below the 83% national rate (for all students) in 44 states. It's clear from Figures 3 & 4 that American Indian and Black students are graduating at rates far below their white and asian peers; the same is true of Hispanic students, though a visualization was not provided here. 
+The national four-year high school graduation rate for the 2015 student cohort was 83.2%. It is clear from Figure 1 that high school graduation rates in most states exceed 75%, with 35 of 50 states surpassing 80%. 
 
 <br>
 
-For brevity, the graduation rates of students with disabilities and students with Limited English Proficiency (LEP) were not presented. If a visualization tool for R were capable of yielding several maps in one graphic, through the use of a filter button, and without color-mixing, then these data would have been presented (or will be implemented in the future). To quickly summarize, these two student groups are graduating at rates far below the national average of 83%. Students with Limited English Proficiency are graduating at rates ranging from 32% to 86%, and students with disabilities are graduating at rates between 29% and 81.9%.
+Economically Disadvantaged students are graduating at rates below 70% in 11 states; this group is also graduating below the national rate (83.2%) in 44 states. 
+
+<br>
+
+It is clear from Figures 3-5 that American Indian, Black, and Hispanic students are graduating at rates far below their White and Asian peers.
+
+<br>
+
+For brevity, the graduation rates of students with disabilities and students with Limited English Proficiency (LEP) were not presented. If a visualization tool for R were capable of yielding several maps in one graphic, through the use of a filter button, and without color-mixing, then these data would have been presented (or will be implemented in the future). To briefly summarize, these two student groups are graduating at rates far below the national average of 83%. Students with Limited English Proficiency are graduating at rates ranging from 32% to 86%, and students with disabilities are graduating at rates between 29% and 81.9%.
 
 <br>
 
