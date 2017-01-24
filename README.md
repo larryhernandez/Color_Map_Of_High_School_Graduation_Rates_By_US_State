@@ -14,8 +14,6 @@ Since the final html document cannot currently be rendered on github, a jpeg ima
 
 High school graduation rates have been collected and published by the US Department of Education for several years, but only a few visualizations of these data are presented online (or are easily found) for recent data. This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map, and it is utilized to visualize public high school graduation rates for several student groups.
 
-<br>
-
   The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The definition of the 4-year ACGR is available on the Common Core of Data website and is reproduced below:
 
   + "The 4-year ACGR is the number of students who graduate in 4 years with a regular high school diploma divided by the number of students who form the adjusted cohort for the graduating class. From the beginning of 9th grade (or the earliest high school grade), students who are entering that grade for the first time form a cohort that is "adjusted" by adding any students who subsequently transfer into the cohort and subtracting any students who subsequently transfer out, emigrate to another country, or die. To protect the confidentiality of individual student data, ACGRs are shown at varying levels of precision depending on the size of the cohort population for each category cell. There are some differences in how states implemented the requirements for the ACGR, leading to the potential for differences across states in how the rates are calculated. This is particularly applicable to the population of children with disabilities."
@@ -76,29 +74,21 @@ It is known among educators that graduation rates for Asian (90.2%) and White (8
 
 ### Map #4: Black Students
 
-<br>
-
 While the graduation rate of American Indian students is lowest among all racial groups, the ACGRs of Black students (74.6%) is not much higher (Figure 4). And in fact, the ACGR of black students was lowest among all racial groups in 23 states. The fact that this is nearly half the total number of states in the country is alarming. Black students graduate at lowest rates in Nevada (55.5%), Ohio (59.7%), and New Mexico (61%). Graduation rates of Black students are highest in Alabama (87%), Texas (85.2%), and Delaware (83.2%). What is being done in Alabama and Texas that could be utilized in other states to increase the high school graduation rate of Black students?
 
-<br>
 
 ## Summary
 
 The national four-year high school graduation rate for the 2015 student cohort was 83.2%. It is clear from Figure 1 that high school graduation rates in most states exceed 75%, with 35 of 50 states surpassing 80%. 
 
-<br>
 
 Economically Disadvantaged students are graduating at rates below 70% in 11 states; this group is also graduating below the national rate (83.2%) in 44 states. 
 
-<br>
 
 It is clear from Figures 3-5 that American Indian, Black, and Hispanic students are graduating at rates far below their White and Asian peers.
 
-<br>
 
 For brevity, the graduation rates of students with disabilities and students with Limited English Proficiency (LEP) were not presented. If a visualization tool for R were capable of yielding several maps in one graphic, through the use of a filter button, and without color-mixing, then these data would have been presented (or will be implemented in the future). To briefly summarize, these two student groups are graduating at rates far below the national average of 83%. Students with Limited English Proficiency are graduating at rates ranging from 32% to 86%, and students with disabilities are graduating at rates between 29% and 81.9%.
-
-<br>
 
 What can be done to raise the high school graduation rate for American Indian / Alaska Native, Black, Hispanic, LEP, and disabled students? Perhaps the systems in place in states with high graduation rates for many student groups, like Alabama and Texas, could be implemented in states where graduation rates are low.
 
@@ -121,7 +111,5 @@ The following is a list of the data sources used to create the visualizations pr
 
 ## Appendix B: Code Used to Complete This Project
 The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHut](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.
-
-<br>
 
 Note: Special thanks to Zev Ross for having created a [tutorial about generating maps with leaflet.](http://zevross.com/blog/2014/04/11/using-r-to-quickly-create-an-interactive-online-map-using-the-leafletr-package/) I relied on the content from that tutorial for generating the maps presented here.
