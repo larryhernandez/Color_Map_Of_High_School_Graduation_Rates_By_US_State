@@ -67,7 +67,7 @@ It is known among educators that graduation rates for Asian (90.2%) and White (8
 
 ### Map #4: Black Students
 
-![](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/Figure5_Black)
+![](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/Figure5_Black.jpg)
 
 While the graduation rate of American Indian students is lowest among all racial groups, the ACGRs of Black students (74.6%) is not much higher (Figure 4). And in fact, the ACGR of black students was lowest among all racial groups in 23 states. The fact that this is nearly half the total number of states in the country is alarming. Black students graduate at lowest rates in Nevada (55.5%), Ohio (59.7%), and New Mexico (61%). Graduation rates of Black students are highest in Alabama (87%), Texas (85.2%), and Delaware (83.2%). What is being done in Alabama and Texas that could be utilized in other states to increase the high school graduation rate of Black students?
 
