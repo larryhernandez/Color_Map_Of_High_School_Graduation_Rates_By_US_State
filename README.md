@@ -5,7 +5,7 @@ Color Map Of High School Graduation Rates By U.S. State
 This is a visualization project. Public high school graduation rates, aggregated by state and select student groups, for the class of 2015 are color-mapped onto an OpenStreetMap representation of the United States.
 
 # Final Output
-The final product is an html document that includes descriptions of the project, methods, sources of data, and a brief summary of the results. The html document is located in this [repository](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) under the name [map_high_school_graduation_rates_50_united_states.html](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/map_high_school_graduation_rates_50_united_states.html), however it will not display under the current restriction set by Github. Therefore, a static version of the content is provided below. Note that the color-maps and bar chart displayed below are non-interactive versions of their counterparts that are contained in the html version.
+The final product is an html document that includes descriptions of the project, methods, sources of data, a color map, and a brief comment on the results. The html document is located in this [repository](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) under the name [map_high_school_graduation_rates_50_united_states.html](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/map_high_school_graduation_rates_50_united_states.html), however it will not display under the current restriction set by Github. Therefore, a static version of the content is provided below. Note that the color-maps and bar chart displayed below are non-interactive versions of their counterparts that are contained in the html version.
 
 ________________________________________________________________________________________________________
 # Static Version of the Final Output Is Presented Below
@@ -13,7 +13,7 @@ ________________________________________________________________________________
 
 ## Introduction
 
-This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map. This color map is interactive. Users canclick on any U.S. state and a text box will display relevant data about that state.
+This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map. This color map is interactive. Users can click on any U.S. state and a text box will display relevant data about that state.
 
 The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The choropleth produced here displays the graduation rate for all students in each U.S. State.
 
