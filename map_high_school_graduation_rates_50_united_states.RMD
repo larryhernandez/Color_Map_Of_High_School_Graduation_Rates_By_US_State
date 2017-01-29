@@ -1,7 +1,7 @@
 ---
 title: "Color Maps of 2015 Public High School Graduation Rates by State, Select Student Groups"
 author: "Larry Hernandez"
-date: "January 18, 2017"
+date: "January 28, 2017"
 output:
   html_document: default
 ---
@@ -10,31 +10,33 @@ output:
 
 ## Introduction
 
-High school graduation rates have been collected and published by the US Department of Education for several years, but only a few visualizations of these data are presented online (or are easily found) for recent data. This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map, and it is utilized to visualize public high school graduation rates for several student groups.
-
-<br>
-
-  The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The definition of the 4-year ACGR is available on the Common Core of Data website and is reproduced below:
-
-  + "The 4-year ACGR is the number of students who graduate in 4 years with a regular high school diploma divided by the number of students who form the adjusted cohort for the graduating class. From the beginning of 9th grade (or the earliest high school grade), students who are entering that grade for the first time form a cohort that is "adjusted" by adding any students who subsequently transfer into the cohort and subtracting any students who subsequently transfer out, emigrate to another country, or die. To protect the confidentiality of individual student data, ACGRs are shown at varying levels of precision depending on the size of the cohort population for each category cell. There are some differences in how states implemented the requirements for the ACGR, leading to the potential for differences across states in how the rates are calculated. This is particularly applicable to the population of children with disabilities."
+  This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map. This color map is interactive. Users can click on any U.S. state and a text box will display relevant data about that state.  
+  
+  The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The choropleth produced here displays the graduation rate for all students in each U.S. State.  
 
 <br>
 
 ## Methods
-  Data for this project were downloaded from the [Common Core of Data (CCD)](https://nces.ed.gov/ccd/tables/ACGR_RE_and_characteristics_2014-15.asp) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into several color maps of the United States with the utilization of a shape file and the leaflet package. These color maps are presented in the Results section of this document.
 
+  Data for this project were downloaded from the [Common Core of Data (CCD)](https://nces.ed.gov/ccd/tables/ACGR_RE_and_characteristics_2014-15.asp) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into several color maps of the United States with the utilization of a shape file and the leaflet package. These color maps are presented in the Results section of this document.  
+
+<br>
 
 ### Data Sources
-  Adjusted Cohort Graduation Rate data was collected from the Common Core of Data (CCD) website, which is a program of the U.S. Department of Education's National Center for Education Statistics (NCES). Each year the CCD collects data for all public schools, public school districts, and state education organizations that operate within the United States. All data points reflect the 2014-2015 school year for school districts residing in the United States, including the District of Columbia, and are indexed with a unique Federal Information Processing Standard (FIPS) code. To create color maps of the ACGR data, a TIGER/Line Shapefile containing a spatial polygon with dataframe to visually represent the 50 United States was downloaded from the US Census website. Web links to the ACGR data and TIGER/Line Shapefiles are provided in Appendix A of this document. 
 
+  Adjusted Cohort Graduation Rate data was collected from the Common Core of Data (CCD) website, which is a program of the U.S. Department of Education's National Center for Education Statistics (NCES). Each year the CCD collects data for all public schools, public school districts, and state education organizations that operate within the United States. All data points reflect the 2014-2015 school year for school districts residing in the United States, including the District of Columbia, and are indexed with a unique Federal Information Processing Standard (FIPS) code. To create color maps of the ACGR data, a TIGER/Line Shapefile containing a spatial polygon with dataframe to visually represent the 50 United States was downloaded from the US Census website. Web links to the ACGR data and TIGER/Line Shapefiles are provided in Appendix A of this document.  
+
+<br>
 
 ### Data Processing
-  The ACGR data were cleaned and transformed for analysis. After loading into R, the data were represented as factor variables rather than as numerical variables (for graduation rates) or character strings (for names of states). User-defined functions were then utilized to transform these factors into the appropriate variable type (numeric or character strings) so that the data set could be analyzed. Numerical ranks were assigned to the ACGR values in each student group (i.e., Economically Disadvantaged, Black, American Indian, etc). That is, within each student group each reported ACGR value was numerically ranked from 1 to 51 (ie. 50 states + the District of Columbia) so that the state with the highest reported ACGR was given the rank of 1. All ties were broken based on the order that the values were examined, so it possible that two or more states could have the same ACGR value but slightly different rank (i.e. Three states with ACGR of 89.0% could be ranked as 3,4,5). The R code that was developed to complete this work is freely available for others to use. A web link to the source code is included in Appendex B.
+  The ACGR data were cleaned and transformed for analysis. After loading into R, the data were represented as factor variables. User-defined functions were then utilized to transform these factors into the appropriate variable type (numeric variables for graduation rates or character strings for state names) so that the data set could be analyzed. Numerical ranks were assigned to the ACGR values in each student group analyzed. That is, within each student group each reported ACGR value was numerically ranked from 1 to 51 (i.e. 50 states + the District of Columbia) so that the state with the highest reported ACGR was given the rank of 1. All ties were broken based on the order that the values were examined, so it possible that two or more states could have the same ACGR value but slightly different rank. For example, three states with ACGR of 89.0% could be ranked as 3,4,5. The R code that was developed to complete this work is freely available for others to use. A web link to the source code is included in Appendex B.  
 
+<br>
 
 ### Interactive Visualizations
   The Leaflet (for R) package was used to overlay a modified shape file onto a map of the U.S. The original, unmodified shape file was downloaded from the U.S. Census website. This shape file contains a spatial polygon data frame representing the 50 U.S. states, the District of Columbia, and additional U.S. territories. To make this shape file useful for creating a color-map of the processed graduation rates, the spatial polygon dataframe associated with the shape file was updated to include the processed ACGR data. This modified spatial polygon was then overlayed onto a map of the U.S. using a color palette for various ranges of graduation rates.
 
+<br>
 
 ```{r, echo=FALSE, warning=FALSE, message= FALSE, results = 'hide'}
 # Clear workspace
@@ -147,15 +149,6 @@ acgr_data$Students.with.disabilities =
 index_to_update = which(acgr_data$State == "Mississippi 2")
 acgr_data[index_to_update,"State"] = "Mississippi"
 
-# Fill the one missing value for the "Asian" subgroup of West Virginia 
-# index_to_update = which(is.na(acgr_data$Asian...Pacific.Islander)) 
-# acgr_data$Asian...Pacific.Islander[index_to_update] = 97.0
-
-# Fill the three missing values for the "American Indian" subgroup of DC, Vermont, and Virginia
-# indices_to_update = which(is.na(acgr_data[,amer_indian_col]))
-# acgr_AmerIndian_DC_VT_VA = c(100,100,98.5)
-# acgr_data[indices_to_update,amer_indian_col] = acgr_AmerIndian_DC_VT_VA
-
 # Insert FIPS code for each state + DC
 acgr_data$FIPS = as.integer(NA)
 rows_to_update = 2:52    # row 1 contains the statistics for the U.S. as a whole 
@@ -259,31 +252,11 @@ sh_states <-SpatialPolygonsDataFrame(sh_states, data=sh_states_data)
 
 # Combine all ACGR values to create color-map in Leaflet
 acgr_total = sh_states$Total
-acgr_asian = sh_states$Asian...Pacific.Islander
-acgr_am_indian = sh_states$American.Indian...Alaska.Native
-acgr_hispanic = sh_states$Hispanic
-acgr_black = sh_states$Black
-acgr_white = sh_states$White
-acgr_econ = sh_states$Economically.disadvantaged
-acgr_lep = sh_states$Limited.English.proficiency
-acgr_disable = sh_states$Students.with.disabilities
 
 # Create popup objects for leaflet map
 popup_total = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
                               "<strong>Rate: </strong>",  sh_states@data$Total, "%", "<br>",
                               "<strong>Rank: </strong>",  sh_states@data$Rank_Total)
-
-popup_econ_dis = paste0("<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
-                                "<strong>Rate: </strong>",  sh_states@data$Economically.disadvantaged, "%", "<br>",
-                                "<strong>Rank: </strong>",  sh_states@data$Rank_EconDisadv)
-
-popup_american_indian = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
-                                "<strong>Rate: </strong>",  sh_states@data$American.Indian...Alaska.Native, "%", "<br>",
-                                "<strong>Rank: </strong>",  sh_states@data$Rank_American_Indian)
-
-popup_black = paste0("<strong>Name: </strong>",  sh_states@data[,"NAME"], "<br>",
-                     "<strong>Rate: </strong>",  sh_states@data[,black_col], "%", "<br>",
-                     "<strong>Rank: </strong>",  sh_states@data[,"Rank_Black"])
 
 mapStates = map("state", fill = FALSE, plot = FALSE)
 
@@ -319,70 +292,11 @@ map_total<- leaflet() %>%
                         title = "Avg ACGR", 
                         opacity = 1, 
                         na.label = "NA")
-
-# Create leaflet map for the economically disadvantaged
-map_econ_dis <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_econ),
-                                  popup = popup_econ_dis,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
-
-
-# Create leaflet map for american_indian
-map_american_indian <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_am_indian),
-                                  popup = popup_american_indian,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
-
-# Create leaflet map for american_indian
-map_black           <-leaflet() %>%
-                      setView(lng = long_val, lat = lat_val, zoom = zoom_val) %>%
-                      addTiles() %>%
-                      addPolygons(data = sh_states,
-                                  stroke = TRUE,
-                                  fillOpacity = fill_opacity_val,
-                                  smoothFactor = smooth_value,
-                                  weight = weight_value,
-                                  color = color_map(acgr_black),
-                                  popup = popup_black,
-                                  group = "Total") %>%
-                      addLegend(  position = position_of_legend, 
-                                  pal = color_map,
-                                  values = acgr_total,
-                                  title = "Avg ACGR", 
-                                  opacity = 1, 
-                                  na.label = "NA")
-
 ```
 
 ## Results
 
-  Interactive color maps have been produced and are presented below as Figures 1-4. While at first glance these figures appear to show only the 48 contiguous states, the interactive nature of these maps allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map, with a rank of 1 indicating the highest graduation rate and 51 indicating the lowest graduation rate in the US, where the District of Columbia has been included. In cases where data is unavailable for all fifty states or the District of Columbia, the lowest achievable rank is smaller than fifty one.
+  An interactive color map has been produced and is presented below. While at first glance the figure appears to show only the 48 contiguous states, the interactive nature of the map allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map.  
 
 <br>
 
@@ -395,34 +309,17 @@ map_total
 
 <br>
 
-  The average graduation rate of all students in each of the 50 United States is displayed in Figure 1. Iowa topped the country at 90.8%, followed closely by New Jersey (89.7%), Alabama (89.3%), and Texas (89.0%). The state with the lowest graduation rate was New Mexico at 68.6%. States which fared slightly better were Nevada (71.3%), Oregon (73.8%), and Mississippi (75.4%). The region with the lowest graduation rate was the District of Columbia at 68.5%.
+  The graduation rates for students in each of the 50 United States is displayed in Figure 1. Iowa topped the country at 90.8%, followed closely by New Jersey (89.7%), Alabama (89.3%), and Texas (89.0%). The state with the lowest graduation rate was New Mexico at 68.6%. States which fared slightly better were Nevada (71.3%), Oregon (73.8%), and Mississippi (75.4%).  
 
 <br>
-
-### Map #2: Economically Disadvantaged Students
-```{r, echo=FALSE, warning=FALSE}
-# Visualize the map
-map_econ_dis
-```
-**Figure 2: The graduation rate for economically disadvantaged students in the U.S. was 76.1% in <br> 2015. Texas boasts the highest graduation rate for this student group at 85.6% which is 3.4 <br> points below the statewide graduation rate (for all students) and 2.4 points above the US National rate.**
-
-<br>
-
-Since students who are economically disadvantaged may face limited access to resources, and therefore suffer academically, a map of the graduation rates for this student group has been generated (Figure 2). The results show that economically disadvantaged students residing in Texas fared best with a group graduation rate of 85.6%, which is pretty close to the overall (i.e. all students) rate of 89.0% for Texas that year. Texas ranked 4th in the nation for the graduation rate that includes all students (Figure 1), so this could be an indication that the public school system in Texas is doing some great things. Closely trailing Texas is Iowa (84.8%) which ranked 1st for the overall graduation rate, followed by Kentucky (84.8%), and then Alabama (84.7%).
-
-
-The state which fared worst at graduating economically disadvantaged students was New Mexico (63.5%). Nevada (63.7%) did not fare much better. Neither did Colorado (65.5%) or Wyoming (66.0%). All four of these states reside in proximity of reach other in the Western United States. It would be interesting to compare Figure 2 with a corresponding map that illustrates economic welfare.
-
-<br>
-
 
 ```{r, echo=FALSE, warning=FALSE}
 # Bar Chart of ACGR for all racial group
-counts            = acgr_data[1,4:8]
-bar_data          = as.numeric(counts)
-barchart_names    = names(counts)
-barchart_names[1] = "Am.Indian"
-barchart_names[2] = "Asian"
+#counts            = acgr_data[1,4:8]
+#bar_data          = as.numeric(counts)
+#barchart_names    = names(counts)
+#barchart_names[1] = "Am.Indian"
+#barchart_names[2] = "Asian"
 
 # acgr_bar <-  plot_ly( x = barchart_names,
 #                       y = bar_data,
@@ -433,118 +330,64 @@ barchart_names[2] = "Asian"
 #                       xaxis = list(title = ""),
 #                       yaxis = list(title = "ACGR"))
 
-Nat.Avg.ACGR = as.numeric(acgr_data[1,"Total"])
+#Nat.Avg.ACGR = as.numeric(acgr_data[1,"Total"])
 
 
-annot <- list(
-                x = 2,
-                y = Nat.Avg.ACGR*1.025,
-                text = "83.2",
-                xref = "x",
-                yref = "y",
-                showarrow = FALSE,
-                textposition = 2)
-
-acgr_bar <-   plot_ly() %>%
-              add_trace(  x = barchart_names,
-                          y = bar_data,
-                          name = "ACGR by Racial Group",
-                          type = "bar",
-                          showlegend = FALSE,
-                          hoverinfo = "text",
-                          text = bar_data
-                        ) %>%
-              add_trace(  x = barchart_names,
-                          y = rep(Nat.Avg.ACGR, 5),
-                          name = "National Avg",
-                          type = "scatter",
-                          showlegend = FALSE,
-                          mode = "lines",
-                          hoverinfo = "none"
-                          #text = "National Average"
-                        ) %>%
-              layout( title = "ACGR by Racial Group ",
-                      xaxis = list(title = "", type="category"),
-                      yaxis = list(title = "ACGR"),
-                      annotations = annot)
+# annot <- list(
+#                 x = 2,
+#                 y = Nat.Avg.ACGR*1.025,
+#                 text = "83.2",
+#                 xref = "x",
+#                 yref = "y",
+#                 showarrow = FALSE,
+#                 textposition = 2)
+# 
+# acgr_bar <-   plot_ly() %>%
+#               add_trace(  x = barchart_names,
+#                           y = bar_data,
+#                           name = "ACGR by Racial Group",
+#                           type = "bar",
+#                           showlegend = FALSE,
+#                           hoverinfo = "text",
+#                           text = bar_data
+#                         ) %>%
+#               add_trace(  x = barchart_names,
+#                           y = rep(Nat.Avg.ACGR, 5),
+#                           name = "National Avg",
+#                           type = "scatter",
+#                           showlegend = FALSE,
+#                           mode = "lines",
+#                           hoverinfo = "none"
+#                           #text = "National Average"
+#                         ) %>%
+#               layout( title = "ACGR by Racial Group ",
+#                       xaxis = list(title = "", type="category"),
+#                       yaxis = list(title = "ACGR"),
+#                       annotations = annot)
 
 # Display Bar Chart
-acgr_bar
+# acgr_bar
 
 ```
-**Figure 3: National graduation rates of the five major racial groups in the US. For reference, <br> the national graduate rate for all students (83.6%) is presented here as an orange, horizontal line.**
-
-<br>
-
-### Map #3: American Indians and Alaska Natives
-```{r, echo=FALSE, warning=FALSE}
-# Visualize the map
-map_american_indian
-```
-**Figure 4: The graduation rate for American Indian / Alaska Native students was 71.6% nationally, <br> with the highest rate in Alabama (90%) and the lowest rate occurring in Wyoming (45%). <br> Graduation rates are below 70% for American Indian students in 14 of 24 states <br> (ie 58% of states) West of the Mississippi River.**
-
-<br>
-
-It is known among educators that graduation rates for Asian (90.2%) and White (87.6%) students are higher than those of Hispanic (77.8%), Black (74.6%), and American Indian students (71.6%). It may not be so well-known that on a national level American Indian students graduate at lower rates than any of the other four racial groups (Figure 3). Figure 4 reveals that only 45-70% of American Indian students graduated high school in 15 of 24 states situated on or west of the Mississippi River. What is happening in the Western United States that American Indian students are graduating in low numbers? The states where American Indian student graduation rates were the highest include Alabama (90%), New Jersey (89%), and Connecticut (87%). The lowest rates were in Wyoming(45%), South Dakota (49%), and Minnesota (52%).
-
-<br>
-
-  Note that for this data, students from Alaska Native backgrounds are included in the American Indian category. Native Hawaiians are not included in the American Indian category, but instead are included in the Asian category (as are students from other Pacific Islander cultures). Additionally, Black includes African American, and Hispanic includes Latino.
-
-<br>
-
-### Map #4: Black Students
-```{r, echo=FALSE, warning=FALSE}
-# Visualize the map
-map_black
-```
-**Figure 5: The graduation rate for Black students was 74.6% nationally, with the lowest rate <br> occurring in Nevada (55.5%) and the highest in Alabama (87%). The ACGR of Black students was <br> below 70% in 13 states.**
-
-<br>
-
-While the graduation rate of American Indian students is lowest among all racial groups, the ACGRs of Black students (74.6%) is not much higher (Figure 4). And in fact, the ACGR of black students was lowest among all racial groups in 23 states. The fact that this is nearly half the total number of states in the country is alarming. Black students graduate at lowest rates in Nevada (55.5%), Ohio (59.7%), and New Mexico (61%). Graduation rates of Black students are highest in Alabama (87%), Texas (85.2%), and Delaware (83.2%). What is being done in Alabama and Texas that could be utilized in other states to increase the high school graduation rate of Black students?
-
-<br>
-
-## Summary
-
-The national four-year high school graduation rate for the 2015 student cohort was 83.2%. It is clear from Figure 1 that high school graduation rates in most states exceed 75%, with 35 of 50 states surpassing 80%. 
-
-<br>
-
-Economically Disadvantaged students are graduating at rates below 70% in 11 states; this group is also graduating below the national rate (83.2%) in 44 states. 
-
-<br>
-
-It is clear from Figures 3-5 that American Indian, Black, and Hispanic students are graduating at rates far below their White and Asian peers.
-
-<br>
-
-For brevity, the graduation rates of students with disabilities and students with Limited English Proficiency (LEP) were not presented. If a visualization tool for R were capable of yielding several maps in one graphic, through the use of a filter button, and without color-mixing, then these data would have been presented (or will be implemented in the future). To briefly summarize, these two student groups are graduating at rates far below the national average of 83%. Students with Limited English Proficiency are graduating at rates ranging from 32% to 86%, and students with disabilities are graduating at rates between 29% and 81.9%.
-
-<br>
-
-What can be done to raise the high school graduation rate for American Indian / Alaska Native, Black, Hispanic, LEP, and disabled students? Perhaps the systems in place in states with high graduation rates for many student groups, like Alabama and Texas, could be implemented in states where graduation rates are low.
-
-<br>
 
 ## Appendix A: Data Sources
 The following is a list of the data sources used to create the visualizations presented in this work.
 
-[1] Adjusted Cohort Graduate Rates for School Year 2014-2015 provided by Common Core of Data:     
+  1. Adjusted Cohort Graduate Rates for School Year 2014-2015 provided by Common Core of Data:     
     https://nces.ed.gov/ccd/tables/xls/ACGR_RE_Characteristics_2014-15.xlsx
 
 
-[2] TIGER geographic shape file (i.e. spatial polygon representation of the United States + territories):
+  2. TIGER geographic shape file (i.e. spatial polygon representation of the United States + territories):
     ftp://ftp2.census.gov/geo/tiger/TIGER2015/STATE/tl_2015_us_state.zip
 
     
-   More information about TIGER/Line Shapefiles can be found at: <br>
-   https://www.census.gov/geo/maps-data/data/tiger-line.html
+More information about TIGER/Line Shapefiles can be found at: <br>
+https://www.census.gov/geo/maps-data/data/tiger-line.html
 
+<br>
 
 ## Appendix B: Code Used to Complete This Project
-The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHut](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.
+The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHut](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.  
 
 <br>
 
