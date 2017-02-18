@@ -1,3 +1,5 @@
+![](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/ACGR_Map_A_Glimpse.jpg)
+
 # Project Name
 Color Map Of High School Graduation Rates By U.S. State
 
