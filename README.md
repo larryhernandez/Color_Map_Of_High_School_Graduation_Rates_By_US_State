@@ -5,7 +5,7 @@ Color Map Of High School Graduation Rates By U.S. State
 This is a visualization project. Public high school graduation rates, aggregated by state and select student groups, for the class of 2015 are color-mapped onto an OpenStreetMap representation of the United States.
 
 # Final Output
-The final product is an html document that includes descriptions of the project, methods, sources of data, a color map, and a brief comment on the results. The html document is located in this [repository](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) under the name [map_high_school_graduation_rates_50_united_states.html](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/map_high_school_graduation_rates_50_united_states.html), however it will not display under the current restriction set by Github. Therefore, a static version of the content is provided below. Note that the color-maps and bar chart displayed below are non-interactive versions of their counterparts that are contained in the html version.
+The final product is an html document that includes descriptions of the project, methods, sources of data, an interactive color map, and a brief comment on the results. The html document is located in this [repository](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) under the name [map_high_school_graduation_rates_50_united_states.html](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/map_high_school_graduation_rates_50_united_states.html). However, it will not display under the current restriction set by Github. Therefore, a static, non-interactive version of the content is provided below.
 
 ________________________________________________________________________________________________________
 # Static Version of the Final Output Is Presented Below
@@ -13,7 +13,7 @@ ________________________________________________________________________________
 
 ## Introduction
 
-This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map. This color map is interactive. Users can click on any U.S. state and a text box will display relevant data about that state.
+This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map.
 
 The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The choropleth produced here displays the graduation rate for all students in each U.S. State.
 
@@ -30,12 +30,12 @@ The 4-year adjusted cohort graduation rate (ACGR) is the version of high school 
   The ACGR data were cleaned and transformed for analysis. After loading into R, the data were represented as factor variables. User-defined functions were then utilized to transform these factors into the appropriate variable type (numeric variables for graduation rates or character strings for state names) so that the data set could be analyzed. Numerical ranks were assigned to the ACGR values in each student group analyzed. That is, within each student group each reported ACGR value was numerically ranked from 1 to 51 (i.e. 50 states + the District of Columbia) so that the state with the highest reported ACGR was given the rank of 1. All ties were broken based on the order that the values were examined, so it possible that two or more states could have the same ACGR value but slightly different rank. For example, three states with ACGR of 89.0% could be ranked as 3,4,5. The R code that was developed to complete this work is freely available for others to use. A web link to the source code is included in Appendex B.
 
 
-### Interactive Visualization
+### Visualization
   The Leaflet (for R) package was used to overlay a modified shape file onto a map of the U.S. The original, unmodified shape file was downloaded from the U.S. Census website. This shape file contains a spatial polygon data frame representing the 50 U.S. states, the District of Columbia, and additional U.S. territories. To make this shape file useful for creating a color-map of the processed graduation rates, the spatial polygon dataframe associated with the shape file was updated to include the processed ACGR data. This modified spatial polygon was then overlayed onto a map of the U.S. using a color palette for various ranges of graduation rates.
 
 ## Results
 
-  An interactive color map has been produced and is presented below. While at first glance the figure appears to show only the 48 contiguous states, the interactivenature of the map allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map.
+  A color map has been produced and is presented below. The figure presented below shows only the 48 contiguous states; however, the interactive version of the map (found [here](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/map_high_school_graduation_rates_50_united_states.html)) allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. In the interactive version of the map, it is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map. 
 
 ### Graduation Rates by State
 
