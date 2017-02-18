@@ -40,6 +40,8 @@ The 4-year adjusted cohort graduation rate (ACGR) is the version of high school 
 ### Graduation Rates by State
 
 ![2015 US National Graduation Rates](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State/blob/master/ACGR_Map_A_Glimpse.jpg)
+**Figure 1: Non-interactive version of color map. The graduation rate for all students in the U.S. was 83.2% in 2015.**
+
 
   The graduation rates for students in each of the 50 United States is displayed in Figure 1. Iowa topped the country at 90.8%, followed closely by New Jersey (89.7%), Alabama (89.3%), and Texas (89.0%). The state with the lowest graduation rate was New Mexico at 68.6%. States which fared slightly better were Nevada (71.3%), Oregon (73.8%), and Mississippi (75.4%).
 
