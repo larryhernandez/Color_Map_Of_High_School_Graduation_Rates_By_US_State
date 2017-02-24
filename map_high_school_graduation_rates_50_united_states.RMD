@@ -1,7 +1,7 @@
 ---
-title: "Color Maps of 2015 Public High School Graduation Rates by State, Select Student Groups"
+title: "Color Map of Public High School Graduation Rates by U.S. State: Class of 2015"
 author: "Larry Hernandez"
-date: "January 28, 2017"
+date: "February 24, 2017"
 output:
   html_document: default
 ---
@@ -10,31 +10,31 @@ output:
 
 ## Introduction
 
-  This work aims to provide a visualization of public high school graduation rates by state for the class of 2015. The visualization chosen is a choropleth, or color map. This color map is interactive. Users can click on any U.S. state and a text box will display relevant data about that state.  
+  This work aims to provide a visualization of public high school graduation rates by U.S. state for the class of 2015. The visualization chosen is a choropleth map, or color map in which previously defined regions, like states or voting districts, are shaded in proportion to the statistical quantity that is being visualized. The choropleth map generated in this work is interactive. Users can click on any U.S. state and a text box will display data corresponding to that state.  
   
-  The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The choropleth produced here displays the graduation rate for all students in each U.S. State.  
+  The 4-year adjusted cohort graduation rate (ACGR) is the version of high school graduation rate that is studied and presented in this work. The ACGR accounts for student mobility, including school transfers, emigration, and even death during the 4-year academic period. ACGR is considered to be an accurate, if not the most accurate, estimate of 4-year graduation rates. The choropleth map produced here displays the graduation rate for all students in each U.S. state.  
 
 <br>
 
 ## Methods
 
-  Data for this project were downloaded from the [Common Core of Data (CCD)](https://nces.ed.gov/ccd/tables/ACGR_RE_and_characteristics_2014-15.asp) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into several color maps of the United States with the utilization of a shape file and the leaflet package. These color maps are presented in the Results section of this document.  
+  Data for this project were downloaded from the [Common Core of Data (CCD)](https://nces.ed.gov/ccd/tables/ACGR_RE_and_characteristics_2014-15.asp) web site. These data were processed in the R Statistical package by utilizing the RStudio graphical user interface. The processed graduation rate data were then converted into a choropleth map of the United States with the utilization of a shapefile and [Leaflet for R](https://rstudio.github.io/leaflet/). The choropleth map is presented in the Results section of this document.  
 
 <br>
 
 ### Data Sources
 
-  Adjusted Cohort Graduation Rate data was collected from the Common Core of Data (CCD) website, which is a program of the U.S. Department of Education's National Center for Education Statistics (NCES). Each year the CCD collects data for all public schools, public school districts, and state education organizations that operate within the United States. All data points reflect the 2014-2015 school year for school districts residing in the United States, including the District of Columbia, and are indexed with a unique Federal Information Processing Standard (FIPS) code. To create color maps of the ACGR data, a TIGER/Line Shapefile containing a spatial polygon with dataframe to visually represent the 50 United States was downloaded from the US Census website. Web links to the ACGR data and TIGER/Line Shapefiles are provided in Appendix A of this document.  
+  Adjusted Cohort Graduation Rate data were collected from the Common Core of Data (CCD) website, which is a program of the U.S. Department of Education's [National Center for Education Statistics (NCES)](https://nces.ed.gov/). Each year the CCD collects data for all public schools, public school districts, and state education organizations that operate within the United States. All data points reflect the 2014-2015 school year for school districts residing in the United States, including the District of Columbia, and are indexed with a unique Federal Information Processing Standard (FIPS) code. To create a choropleth map of the ACGR data, a TIGER/Line Shapefile containing a spatial polygon with dataframe to visually represent the 50 United States was downloaded from the US Census website. Web links to the ACGR data and TIGER/Line Shapefiles are provided in Appendix A of this document.  
 
 <br>
 
 ### Data Processing
-  The ACGR data were cleaned and transformed for analysis. After loading into R, the data were represented as factor variables. User-defined functions were then utilized to transform these factors into the appropriate variable type (numeric variables for graduation rates or character strings for state names) so that the data set could be analyzed. Numerical ranks were assigned to the ACGR values in each student group analyzed. That is, within each student group each reported ACGR value was numerically ranked from 1 to 51 (i.e. 50 states + the District of Columbia) so that the state with the highest reported ACGR was given the rank of 1. All ties were broken based on the order that the values were examined, so it possible that two or more states could have the same ACGR value but slightly different rank. For example, three states with ACGR of 89.0% could be ranked as 3,4,5. The R code that was developed to complete this work is freely available for others to use. A web link to the source code is included in Appendex B.  
+  The ACGR data were cleaned and transformed for analysis. After loading into R, the data were automatically represented as factor variables. User-defined functions were then utilized to transform these factors into the appropriate variable type (numeric variables for graduation rates or character strings for state names) so that the data could be analyzed. Numerical ranks were assigned to the ACGR values. That is, each reported ACGR value was numerically ranked from 1 to 51 (i.e. 50 states + the District of Columbia) so that the state with the highest reported ACGR was given the rank of 1. All ties were broken based on the order that the values were examined, so it possible that two or more states could have the same ACGR value but slightly different rank. For example, three states with ACGR of 89.0% could be ranked as 3,4,5. The R code that was developed to complete this work is freely available for others to use. A web link to the source code is included in Appendex B.  
 
 <br>
 
-### Interactive Visualizations
-  The Leaflet (for R) package was used to overlay a modified shape file onto a map of the U.S. The original, unmodified shape file was downloaded from the U.S. Census website. This shape file contains a spatial polygon data frame representing the 50 U.S. states, the District of Columbia, and additional U.S. territories. To make this shape file useful for creating a color-map of the processed graduation rates, the spatial polygon dataframe associated with the shape file was updated to include the processed ACGR data. This modified spatial polygon was then overlayed onto a map of the U.S. using a color palette for various ranges of graduation rates.
+### Interactive Visualization
+  The Leaflet for R package was used to overlay a modified shapefile onto a map of the U.S. The original, unmodified shapefile was downloaded from the U.S. Census website. This shapefile contains a spatial polygon data frame representing the 50 U.S. states, the District of Columbia, and additional U.S. territories. To make this shapefile useful for creating a choropleth map of the processed graduation rates, the spatial polygon dataframe associated with the shapefile was updated to include the processed ACGR data. This modified spatial polygon was then overlayed onto a map of the U.S. using a color palette for various ranges of graduation rates.
 
 <br>
 
@@ -71,7 +71,7 @@ dir_project = "C:/Users/Larry/Documents/DataScience/Education_Projects/ACGR/map_
 dir_code    = paste0(dir_project,"code/")                                      # code files for this project
 dir_code2   = "C:/Users/Larry/graduation_rates/HighSchoolGraduationRates_vs_InstructionalExpenditures/"
 dir_data    = paste0(dir_project,"data/")                                      # to place data files
-dir_to_put_shapes  = paste0(dir_data,"shape_files/")                           # subfolder for storing shape files
+dir_to_put_shapes  = paste0(dir_data,"shape_files/")                           # subfolder for storing shapefiles
 
 setwd(dir_code)
 
@@ -98,9 +98,9 @@ source(paste0(dir_code2,"merge_data_with_shape.R"))
 # Download the acgr data
 fileURL_acgr2014_2015 = "https://nces.ed.gov/ccd/tables/xls/ACGR_RE_Characteristics_2014-15.xlsx"
 filename = "ACGR_RE_Characteristics_2014-15.xlsx"
-# download.file(fileURL_acgr2014_2015, 
-#              destfile = paste0(dir_data,filename), 
-#              mode = "wb")
+download.file(fileURL_acgr2014_2015, 
+              destfile = paste0(dir_data,filename), 
+              mode = "wb")
 
 
 # Read the data into a dataframe
@@ -113,12 +113,13 @@ acgr_data = read.xlsx(file = paste0(dir_data,filename),
                       header = TRUE)
 
 colnames(acgr_data)[1] = "State"      # Update name of first column
-colnames(acgr_data)[2] = "FIPS"
+colnames(acgr_data)[2] = "FIPS"       # Update name of second column
+
 #####################################################################################
 #####################################################################################
 #########                                                                   #########
 #########       Clean, Transform, Aggregate, Save data to disk              #########
-#########                                                                   #########                           
+#########                                                                   #########     
 #####################################################################################
 #####################################################################################
 
@@ -167,58 +168,62 @@ acgr_data[rows_to_update, "Rank_EconDisadv"]     = rank_grad_rates(acgr_data[row
 acgr_data[rows_to_update, "Rank_LimitedEnglish"] = rank_grad_rates(acgr_data[rows_to_update, "Limited.English.proficiency"])
 acgr_data[rows_to_update, "Rank_Disabilities"]   = rank_grad_rates(acgr_data[rows_to_update, "Students.with.disabilities"])
 
+# The row numbers corresponding to US States are placed into a vector
 states_only = c(2:9,11:52)
-races                         = c(amer_indian_col,asian_col,hispanic_col,black_col,white_col)
+
+# Basic Analysis on each of the five racial categories: determine how often each racial group ranks
+# the lowest (state level)
+races = c(amer_indian_col,asian_col,hispanic_col,black_col,white_col)
 num__times_amer_indian_is_min = num_instances_category_is_min(acgr_data[states_only,],amer_indian_col,races)
 num_times_asian_is_min        = num_instances_category_is_min(acgr_data[states_only,],asian_col,races)
 num_times_hispanic_is_min     = num_instances_category_is_min(acgr_data[states_only,],hispanic_col,races)
 num_times_black_is_min        = num_instances_category_is_min(acgr_data[states_only,],black_col,races)
 num_times_white_is_min        = num_instances_category_is_min(acgr_data[states_only,],white_col,races)
 
-# Save finalized data set to disk
+# Save finalized ACGR data set to disk
 output_csv = paste0(dir_data,"cleaned_acgr_data_us_states.csv")
-# write.csv(acgr_data,file=output_csv)
+write.csv(acgr_data,file=output_csv)
 
 #####################################################################################
 #####################################################################################
 #########                                                                   #########
 #########           Create map of ACGR data using leaflet                   #########
-#########                                                                   #########                           
+#########                                                                   #########    
 #####################################################################################
 #####################################################################################
 
-# Download shape files
+# Download shapefiles
 fileURL = "ftp://ftp2.census.gov/geo/tiger/TIGER2015/STATE/tl_2015_us_state.zip"
 fn_zipped_tiger_shape = "tl_2015_us_state.zip"
 zip_file_full_name =  paste0(dir_to_put_shapes,fn_zipped_tiger_shape)
 fn_tiger_shape = paste0(substr(fn_zipped_tiger_shape, 1, nchar(fn_zipped_tiger_shape)-4),".shp")
 
-# download.file(fileURL,
-#               destfile = zip_file_full_name, 
-#               mode = "wb")
+download.file(fileURL,
+              destfile = zip_file_full_name, 
+              mode = "wb")
 
 dir_to_unzip_shapes = substr(dir_to_put_shapes, 1, nchar(dir_to_put_shapes)-1)
 
 # unzip file
-# unzip(zip_file_full_name, 
-#       files = NULL, 
-#       list = FALSE, 
-#       overwrite = TRUE,
-#       junkpaths = FALSE, 
-#       exdir = dir_to_unzip_shapes, 
-#       unzip = "internal",
-#       setTimes = FALSE)
+ unzip(zip_file_full_name, 
+       files = NULL, 
+       list = FALSE, 
+       overwrite = TRUE,
+       junkpaths = FALSE, 
+       exdir = dir_to_unzip_shapes, 
+       unzip = "internal",
+       setTimes = FALSE)
 
 # delete .zip file
 # file.remove(zip_file_full_name)
 
 # Update name of shapefile for subsequent use with readOGR()
-# Note1: the string containing name of the directory containing shape file 
+# Note1: the string containing name of the directory containing shapefile 
 #        should not have "/" at the end
 # Note2: name of shapefile should exclude the ".shp" suffix
 fn_tiger_shape = substr(fn_tiger_shape, 1, nchar(fn_tiger_shape)-4)
 
-# Load shape file
+# Load shapefile
 sh_states <- readOGR(dsn = dir_to_unzip_shapes, layer = fn_tiger_shape)
    
 # Merge acgr data with the shapefile.dataframes
@@ -250,18 +255,18 @@ sh_states <-SpatialPolygonsDataFrame(sh_states, data=sh_states_data)
 # ----- Read GeoJSON data for leaflet
 # leaf_data = readOGR(dsn = filename_leafdata)
 
-# Combine all ACGR values to create color-map in Leaflet
+# Combine all ACGR values to create choropleth map in Leaflet
 acgr_total = sh_states$Total
 
 # Create popup objects for leaflet map
 popup_total = paste0( "<strong>Name: </strong>",  sh_states@data$NAME, "<br>",
-                              "<strong>Rate: </strong>",  sh_states@data$Total, "%", "<br>",
-                              "<strong>Rank: </strong>",  sh_states@data$Rank_Total)
+                      "<strong>Rate: </strong>",  sh_states@data$Total, "%", "<br>",
+                      "<strong>Rank: </strong>",  sh_states@data$Rank_Total)
 
 mapStates = map("state", fill = FALSE, plot = FALSE)
 
 # Create color pal for map
-color_map = colorBin("RdYlBu", acgr_total, bins = c(0,60,65,70,75,80,85,90,100), na.color = "grey")
+color_map = colorBin("RdYlBu", acgr_total, bins = c(0,60,65,70,75,80,85,90,100), na.color = "gray")
 
 # Assign values for drawing & shading polygons on map
 weight_value = 2.5
@@ -290,17 +295,18 @@ map_total<- leaflet() %>%
                         pal = color_map,
                         values = acgr_total,
                         title = "Avg ACGR", 
-                        opacity = 1, 
-                        na.label = "NA")
+                        opacity = 1,
+                        na.label = "NA"
+                      )
+                        
 ```
 
 ## Results
 
-  An interactive color map has been produced and is presented below. While at first glance the figure appears to show only the 48 contiguous states, the interactive nature of the map allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the average graduation rate and rank for the student group represented in the corresponding map.  
+  An interactive choropleth map has been produced and is presented below. While at first glance the figure appears to show only the 48 contiguous states, the interactive nature of the map allows users to pan in any of the four cardinal directions (i.e. North, South, East, West) to reveal Hawaii and Alaska. It is also possible to click on each state to reveal the corresponding graduation rate and rank among all states.
 
 <br>
 
-### Map #1: Graduation Rates by State
 ```{r, echo=FALSE, warning=FALSE}
 # Visualize the map
 map_total
@@ -313,82 +319,25 @@ map_total
 
 <br>
 
-```{r, echo=FALSE, warning=FALSE}
-# Bar Chart of ACGR for all racial group
-#counts            = acgr_data[1,4:8]
-#bar_data          = as.numeric(counts)
-#barchart_names    = names(counts)
-#barchart_names[1] = "Am.Indian"
-#barchart_names[2] = "Asian"
-
-# acgr_bar <-  plot_ly( x = barchart_names,
-#                       y = bar_data,
-#                       name = "ACGR vs Racial Group",
-#                       type = "bar"
-#                     ) %>%
-#               layout( title = "ACGR by Racial Group ",
-#                       xaxis = list(title = ""),
-#                       yaxis = list(title = "ACGR"))
-
-#Nat.Avg.ACGR = as.numeric(acgr_data[1,"Total"])
-
-
-# annot <- list(
-#                 x = 2,
-#                 y = Nat.Avg.ACGR*1.025,
-#                 text = "83.2",
-#                 xref = "x",
-#                 yref = "y",
-#                 showarrow = FALSE,
-#                 textposition = 2)
-# 
-# acgr_bar <-   plot_ly() %>%
-#               add_trace(  x = barchart_names,
-#                           y = bar_data,
-#                           name = "ACGR by Racial Group",
-#                           type = "bar",
-#                           showlegend = FALSE,
-#                           hoverinfo = "text",
-#                           text = bar_data
-#                         ) %>%
-#               add_trace(  x = barchart_names,
-#                           y = rep(Nat.Avg.ACGR, 5),
-#                           name = "National Avg",
-#                           type = "scatter",
-#                           showlegend = FALSE,
-#                           mode = "lines",
-#                           hoverinfo = "none"
-#                           #text = "National Average"
-#                         ) %>%
-#               layout( title = "ACGR by Racial Group ",
-#                       xaxis = list(title = "", type="category"),
-#                       yaxis = list(title = "ACGR"),
-#                       annotations = annot)
-
-# Display Bar Chart
-# acgr_bar
-
-```
 
 ## Appendix A: Data Sources
-The following is a list of the data sources used to create the visualizations presented in this work.
+The following is a list of the data sources used to create the visualization presented in this work.
 
   1. Adjusted Cohort Graduate Rates for School Year 2014-2015 provided by Common Core of Data:     
     https://nces.ed.gov/ccd/tables/xls/ACGR_RE_Characteristics_2014-15.xlsx
 
 
-  2. TIGER geographic shape file (i.e. spatial polygon representation of the United States + territories):
+  2. TIGER/Line geographic shapefile (i.e. spatial polygon representation of the United States + territories):
     ftp://ftp2.census.gov/geo/tiger/TIGER2015/STATE/tl_2015_us_state.zip
 
     
-More information about TIGER/Line Shapefiles can be found at: <br>
-https://www.census.gov/geo/maps-data/data/tiger-line.html
+    More information about TIGER/Line Shapefiles can be found at https://www.census.gov/geo/maps-data/data/tiger-line.html
 
 <br>
 
 ## Appendix B: Code Used to Complete This Project
-The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHut](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.  
+The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted [online](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State). It is freely available for others to use.  
 
 <br>
 
-Note: Special thanks to Zev Ross for having created a [tutorial about generating maps with leaflet.](http://zevross.com/blog/2014/04/11/using-r-to-quickly-create-an-interactive-online-map-using-the-leafletr-package/) I relied on the content from that tutorial for generating the maps presented here.
+Note: Special thanks to Zev Ross for having written a [tutorial](http://zevross.com/blog/2014/04/11/using-r-to-quickly-create-an-interactive-online-map-using-the-leafletr-package/) on creating interactive maps with leaflet. I relied on the content from that tutorial for generating the choropleth map presented here.
