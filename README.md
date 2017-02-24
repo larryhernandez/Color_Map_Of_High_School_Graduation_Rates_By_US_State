@@ -59,7 +59,7 @@ The following is a list of the data sources used to create the visualizations pr
     ftp://ftp2.census.gov/geo/tiger/TIGER2015/STATE/tl_2015_us_state.zip
 
     
-    More information about TIGER/Line Shapefiles can be found at https://www.census.gov/geo/maps-data/data/tiger-line.html
+   More information about TIGER/Line Shapefiles can be found at https://www.census.gov/geo/maps-data/data/tiger-line.html
 
 
 ## Appendix B: Code Used to Complete This Project
