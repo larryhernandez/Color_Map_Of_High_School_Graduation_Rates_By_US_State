@@ -63,6 +63,6 @@ The following is a list of the data sources used to create the visualizations pr
 
 
 ## Appendix B: Code Used to Complete This Project
-The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is posted on [GitHub](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) and is freely available for others to use.
+The code utilized for processing and visualizing the 2015 Adjusted Cohort Graduation Rate data is [posted](https://github.com/larryhernandez/Color_Map_Of_High_School_Graduation_Rates_By_US_State) on [GitHub](https://github.com). It is freely available for others to use.
 
 Note: Special thanks to Zev Ross for having written a [tutorial](http://zevross.com/blog/2014/04/11/using-r-to-quickly-create-an-interactive-online-map-using-the-leafletr-package/) about creating interactive maps with leaflet. I relied on the content from that tutorial for generating the choropleth map presented here.
